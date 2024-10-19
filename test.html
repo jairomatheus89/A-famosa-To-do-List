@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Div Example</title>
+</head>
+<body>
+    <div id="parentDiv" style="border: 1px solid black; padding: 10px; width: 300px; height: 300px;">
+        Parent Div (Click to add a child div)
+    </div>
+
+    <script>
+        // Select the parent div
+        const parentDiv = document.getElementById('parentDiv');
+
+        // Add a click event listener to the parent div
+        parentDiv.addEventListener('click', function() {
+            // Create a new div element
+            const newDiv = document.createElement('div');
+            
+            // Set some styles and content for the new div
+            newDiv.style.border = '1px solid red';
+            newDiv.style.margin = '5px';
+            newDiv.style.padding = '5px';
+            newDiv.textContent = 'Child Div';
+
+            // Append the new div to the parent div
+            parentDiv.appendChild(newDiv);
+        });
+    </script>
+</body>
+</html>
