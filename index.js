@@ -4,17 +4,21 @@ const warningDiv = document.getElementById("WarningDiv");
 
 function loadTasks() {
     const savedTasks = JSON.parse(localStorage.getItem("tasksArray")) || [];
-    savedTasks.forEach(task => addTaskToDOM(task));
+    savedTasks.forEach(task => addTaskToDOM(task.text, task.completed));
 }
 
 function saveTasks() {
-    const tasks = Array.from(listDiv.children).map(container => 
-        container.querySelector(".tasksName").innerText
-    );
+    const tasks = Array.from(listDiv.children).map(container => {
+        const tasksName = container.querySelector(".tasksName");
+        return {
+            text: tasksName.innerText,
+            completed: tasksName.classList.contains('strikethrough')
+        };
+    });
     localStorage.setItem("tasksArray", JSON.stringify(tasks));
 }
 
-function addTaskToDOM(taskContent) {
+function addTaskToDOM(taskContent, completed = false) {
     const tasksContainer = document.createElement("div");
     const tasksName = document.createElement("span");
     const deleteTaskBut = document.createElement("button");
@@ -25,6 +29,15 @@ function addTaskToDOM(taskContent) {
 
     tasksName.innerText = taskContent;
 
+    if (completed) {
+        tasksName.classList.add('strikethrough');
+    }
+
+    tasksName.addEventListener('click', function() {
+        tasksName.classList.toggle('strikethrough'); // Toggle the strikethrough class
+        saveTasks(); // Save tasks after toggling
+    });
+
     tasksContainer.appendChild(tasksName);
     tasksContainer.appendChild(deleteTaskBut);
     listDiv.append(tasksContainer);
@@ -34,6 +47,7 @@ function addTaskToDOM(taskContent) {
         listDiv.removeChild(tasksContainer);
         saveTasks(); // Update localStorage after deletion
     });
+
 }
 
 sendButton.addEventListener('click', function() {
