@@ -101,9 +101,14 @@ h2{
 }
 
 .tasksNames{
+    display:flex;
+    font-size:40pt;
+    justify-content: center;
+    align-items: center;
     height:94%;
     width: 78%;
     background-color:pink;
+    color:black;
 }
 
 .delTaskBut{
@@ -113,3 +118,16 @@ h2{
     background-size: cover;
 }
 
+#WarningDiv{
+    font-size: 16pt;
+    color:red;
+}
+
+.warningClass{
+    animation: warningWhiteSpace 0.5s linear;
+}
+
+@keyframes warningWhiteSpace{
+    0% {transform:translateY(-100%); opacity:0}
+    100% {transform:translateY(0%); opacity:1}
+}
