@@ -109,13 +109,26 @@ h2{
     width: 78%;
     background-color:pink;
     color:black;
+    user-select: none;
 }
 
 .delTaskBut{
-    height:94%;
+    display:flex;
+    height:100%;
     width:18%;
-    background-image: url('src/gifs/DU2.gif');
-    background-size: cover;
+    background-image: url('src/img/trash_can_icon.png');
+    background-size:30% 50%;
+    background-repeat:no-repeat;
+    background-position: center;
+}
+
+.delTaskBut:hover{
+    cursor:pointer;
+}
+
+.delTaskBut:active{
+    transform:translate(2px, 1%);
+    filter: invert(75%);
 }
 
 #WarningDiv{
